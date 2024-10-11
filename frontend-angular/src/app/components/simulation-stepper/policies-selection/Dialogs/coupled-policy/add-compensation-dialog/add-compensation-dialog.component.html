@@ -1,0 +1,27 @@
+<h3 mat-dialog-title>Add economic compensation</h3>
+
+<div mat-dialog-content style="padding-top:1rem !important">
+  <form [formGroup]="productForm" (ngSubmit)="handleSubmit()" class="form-controls" fxLayout="column">
+
+    <mat-form-field appearance="outline">
+      <mat-label>Product Group</mat-label>
+      <mat-select class="form-select" formControlName="productGroup">
+        <mat-option *ngFor="let product of products" [value]="product.name"> {{product.name}} </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Economic compensation</mat-label>
+      <input matInput type="number" formControlName="economicCompensation" />
+    </mat-form-field>
+
+    <div mat-dialog-actions
+      style="margin-left: 0 !important; padding-left:0 !important; margin-right: 0 !important; padding-right:0 !important"
+      fxLayoutAlign="space-between flex-end" fxLayoutGap="10">
+      <button mat-raised-button mat-dialog-close>Cancel</button>
+      <button mat-raised-button type="submit" color="primary">Add</button>
+    </div>
+
+  </form>
+
+</div>

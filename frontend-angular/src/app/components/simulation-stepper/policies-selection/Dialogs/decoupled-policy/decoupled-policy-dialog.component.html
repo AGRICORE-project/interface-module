@@ -1,0 +1,49 @@
+<h3 mat-dialog-title>Add decoupled policy</h3>
+
+<div mat-dialog-content style="padding-top:1rem !important">
+  <form [formGroup]="policyForm" (ngSubmit)="handleSubmit()" class="form-controls" fxLayout="column">
+
+    <mat-form-field appearance="outline">
+      <mat-label>Policy identifier</mat-label>
+      <input matInput type="number" formControlName="policyIdentifier" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Policy Description</mat-label>
+      <textarea matInput formControlName="policyDescription"></textarea>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Model Label</mat-label>
+      <mat-select class="form-select" formControlName="modelLabel">
+        <mat-option [value]="''"> None</mat-option>
+        <mat-option [value]="'Greening'"> Greening</mat-option>
+        <mat-option [value]="'Basic'"> Basic</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Economic compensation</mat-label>
+      <input matInput type="number" formControlName="economicCompensation" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Start Year</mat-label>
+      <input matInput type="number" formControlName="startYearNumber" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>End Year</mat-label>
+      <input matInput type="number" formControlName="endYearNumber" />
+    </mat-form-field>
+
+    <div mat-dialog-actions
+      style="margin-left: 0 !important; padding-left:0 !important; margin-right: 0 !important; padding-right:0 !important"
+      fxLayoutAlign="space-between flex-end" fxLayoutGap="10">
+      <button mat-raised-button mat-dialog-close>Cancel</button>
+      <button mat-raised-button type="submit" color="primary">Add</button>
+    </div>
+
+  </form>
+
+</div>

@@ -1,0 +1,53 @@
+<div class="container">
+
+    <h2 class="text-center mb30">Sign in</h2>
+
+    <mat-card *ngIf="error" class="card-error mb20">
+        <mat-card-content>
+            {{ error }}
+        </mat-card-content>
+    </mat-card>
+
+    <form (ngSubmit)="submitLogin()" autocomplete="off" [formGroup]="loginForm" fxLayout="column" fxLayoutAlign="center center">
+
+        <div fxFill class="form-controls">
+            <mat-form-field appearance="outline">
+                <mat-label>Email</mat-label>
+                <input matInput formControlName="email" placeholder="agricore@example.com" required>
+                <mat-icon matSuffix aria-hidden="false" aria-label="User" fontIcon="person"></mat-icon>
+                <mat-error *ngIf="hasError('email')">{{ emailError }}</mat-error>
+            </mat-form-field>
+        </div>
+
+        <div fxFill class="form-controls">
+            <div class="text-right">
+                 <a [routerLink]="recoverRoute" routerLinkActive="">Forgot your password?</a>
+            </div>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Password</mat-label>
+                <input matInput formControlName="password" [type]="hide ? 'password' : 'text'" required>
+                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                   <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+                <mat-error *ngIf="hasError('password')">{{ passwordError }}</mat-error>
+            </mat-form-field>
+        </div>
+        
+         <!-- <div fxFill class="form-controls">
+             <mat-checkbox color="primary" class="mb20">
+                 <span class="color-primary">Remember me</span>
+             </mat-checkbox>
+         </div> -->
+
+        <button fxFill fxLayoutAlign="center center" mat-raised-button color="primary" [disabled]="loginForm.invalid" class="mb20 p10">
+            <mat-spinner *ngIf="loading" diameter="25"></mat-spinner>
+            <span *ngIf="!loading">Sign in</span>
+        </button>
+
+        <mat-divider class="mb20 w100"></mat-divider>
+        
+        <p class="text-center"><a [routerLink]="signUpRoute">Dont have an account? <b>Sign up!</b></a></p>
+    </form>
+
+</div>

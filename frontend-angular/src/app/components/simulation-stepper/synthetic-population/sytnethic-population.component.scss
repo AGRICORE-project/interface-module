@@ -1,0 +1,18 @@
+th, td {
+    text-align: center;
+}
+.table-actions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    min-height: 50px;
+}
+.table-actions mat-icon, .select-row mat-icon{
+    color: #3f51b5;
+    cursor: pointer;
+}
+.select-row mat-icon.readonly {
+    color: #999;
+    cursor: auto    ;
+}

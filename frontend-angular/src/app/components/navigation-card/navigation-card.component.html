@@ -1,0 +1,11 @@
+<mat-card class="navigation-card p30 mb30" fxLayout="row wrap">
+    <div fxFlex="85" fxFlex.lt-lg="100" class="card-content">
+        <mat-card-title class="mb10">{{title}}</mat-card-title>
+        <mat-card-content>
+        <p>{{message}}</p>
+        </mat-card-content>
+    </div>
+    <mat-card-actions fxFlex="15" fxFlex.lt-lg="100" fxLayoutAlign="center center">
+      <button mat-raised-button [routerLink]="route" >NAVIGATE</button>
+    </mat-card-actions>
+  </mat-card>

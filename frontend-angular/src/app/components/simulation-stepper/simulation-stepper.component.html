@@ -1,0 +1,82 @@
+<mat-stepper [orientation]="(stepperOrientation | async)!" headerPosition="top" #stepper
+  (selectionChange)="updateSimulationData($event)" linear>
+  <!-- change default 'done' icon -->
+  <ng-template matStepperIcon="done">
+    <mat-icon>done_all</mat-icon>
+  </ng-template>
+
+  <!-- stepper icons -->
+  <ng-template matStepperIcon="synthetic">
+    <mat-icon>group</mat-icon>
+  </ng-template>
+  <ng-template matStepperIcon="products">
+    <mat-icon>shopping_cart</mat-icon>
+  </ng-template>
+  <ng-template matStepperIcon="policies">
+    <mat-icon>gavel</mat-icon>
+  </ng-template>
+  <ng-template matStepperIcon="configuration">
+    <mat-icon>settings</mat-icon>
+  </ng-template>
+  <ng-template matStepperIcon="launch">
+    <mat-icon>rocket_launch</mat-icon>
+  </ng-template>
+
+  <mat-step state="synthetic" [stepControl]="populationForm">
+    <ng-template matStepLabel>Synthetic population <span class="color-warn">*</span></ng-template>
+    <ng-template matStepContent>
+      <app-synthetic-population [populationIntheritedForm]="populationForm"></app-synthetic-population>
+      <div fxLayoutAlign="flex-end" class="stepper-controls" fxLayoutGap="10">
+        <button mat-raised-button matStepperPrevious>Back</button>
+        <button mat-raised-button matStepperNext color="accent" [disabled]="populationForm.invalid">Next</button>
+      </div>
+    </ng-template>
+  </mat-step>
+
+  <mat-step state="products">
+    <ng-template matStepLabel>Products <mat-icon class="info-icon">info</mat-icon></ng-template>
+    <ng-template matStepContent>
+      <app-product-grouping [populationIntheritedForm]="populationForm"></app-product-grouping>
+      <div fxLayoutAlign="flex-end" class="stepper-controls" fxLayoutGap="10">
+        <button mat-raised-button matStepperPrevious>Back</button>
+        <button mat-raised-button matStepperNext color="accent">Next</button>
+      </div>
+    </ng-template>
+  </mat-step>
+
+  <mat-step state="policies" [stepControl]="policiesForm" [state]="">
+    <form [formGroup]="policiesForm">
+      <ng-template matStepLabel>Policies <span class="color-warn">*</span></ng-template>
+      <ng-template matStepContent>
+        <app-policies-selection [populationForm]="populationForm"
+          [policiesForm]="policiesForm"></app-policies-selection>
+        <div fxLayoutAlign="flex-end" class="stepper-controls" fxLayoutGap="10">
+          <button mat-raised-button matStepperPrevious>Back</button>
+          <button mat-raised-button matStepperNext color="accent">Next</button>
+        </div>
+      </ng-template>
+    </form>
+  </mat-step>
+
+  <mat-step state="configuration" [stepControl]="configurationForm">
+    <ng-template matStepLabel>Simulation configuration <span class="color-warn">*</span></ng-template>
+    <ng-template matStepContent>
+      <app-simulation-configuration [configurationInheritedForm]="configurationForm"></app-simulation-configuration>
+      <div fxLayoutAlign="flex-end" class="stepper-controls" fxLayoutGap="10">
+        <button mat-raised-button matStepperPrevious>Back</button>
+        <button mat-raised-button matStepperNext color="accent" [disabled]="configurationForm.invalid">Next</button>
+      </div>
+    </ng-template>
+  </mat-step>
+
+  <mat-step state="launch">
+    <ng-template matStepLabel>Launch</ng-template>
+    <ng-template matStepContent>
+      <app-launch-simulation></app-launch-simulation>
+      <div fxLayoutAlign="flex-end" class="stepper-controls" fxLayoutGap="10">
+        <button mat-raised-button matStepperPrevious>Back</button>
+        <button mat-raised-button (click)="resetSimulation()" class="reset-button">Reset</button>
+      </div>
+    </ng-template>
+  </mat-step>
+</mat-stepper>

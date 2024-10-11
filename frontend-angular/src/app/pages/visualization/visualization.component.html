@@ -1,0 +1,12 @@
+<div class="visualizations-header mb20" fxLayoutAlign="space-between center">
+  <h2>Visualization</h2>
+  <div class="advanced-visualizations">
+    <button mat-raised-button><a href="# TO_MODIFY: add superset url" target="_blank">Advanced visualization</a></button>
+  </div>
+</div>
+
+<div fxLayout="row wrap" lass="visualisation-container">
+  <div class="dashboard-wrapper" fxFill>
+    <iframe seamless frameBorder="0" [src]="supersetUrl + '/superset/dashboard/3/?standalone=2' | safe"> </iframe>
+  </div>
+</div>

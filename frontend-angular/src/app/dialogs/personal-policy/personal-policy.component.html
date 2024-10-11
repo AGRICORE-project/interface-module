@@ -1,0 +1,90 @@
+<h3 *ngIf="!data.id" mat-dialog-title>Create new policy</h3>
+<h3 *ngIf="data.id" mat-dialog-title>Update policy</h3>
+
+<div mat-dialog-content>
+
+ <form [formGroup]="policyForm">
+
+  <div class="form-controls" fxLayout="row" fxLayoutGap="20">
+    <div class="field" fxLayout="column">
+      <label>Policy name</label>
+      <mat-form-field appearance="outline">
+        <input matInput formControlName="title" required>
+        <mat-error *ngIf="hasError('title')">{{ titleError }}</mat-error>
+      </mat-form-field>
+    </div>
+    <div class="field" fxLayout="column">
+      <label>Type</label>
+      <mat-form-field appearance="outline">
+          <mat-select class="form-select" formControlName="type">
+            <mat-option value="test">test</mat-option>
+         </mat-select>
+         <mat-error *ngIf="hasError('type')">{{ typeError }}</mat-error>
+      </mat-form-field>
+    </div> 
+  </div>
+
+  <div class="form-controls mb20" fxLayout="row" fxLayoutGap="20">
+    
+    <div class="field" fxLayout="column">
+      <label>Derogation date</label>
+      <mat-form-field  appearance="outline">
+        <input matInput [matDatepicker]="derogation" formControlName="derogationDate" autocomplete="off">
+        <mat-hint>YYYY-MM-DD</mat-hint>
+        <mat-datepicker-toggle matSuffix [for]="derogation"></mat-datepicker-toggle>
+        <mat-datepicker #derogation color="primary"></mat-datepicker>
+        <mat-error *ngIf="hasError('derogationDate')">{{ deroagtionError }}</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="field" fxLayout="column">
+      <label>Start date</label>
+      <mat-form-field  appearance="outline">
+        <input matInput [matDatepicker]="start" formControlName="startDate" autocomplete="off">
+        <mat-hint>YYYY-MM-DD</mat-hint>
+        <mat-datepicker-toggle matSuffix [for]="start"></mat-datepicker-toggle>
+        <mat-datepicker #start color="primary"></mat-datepicker>
+        <mat-error *ngIf="hasError('startDate')">{{ startDateError }}</mat-error>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="form-controls" fxLayout="row" fxLayoutGap="20">
+    <div class="field" fxLayout="column">
+      <label>Active / Inactive</label>
+      <mat-form-field appearance="outline">
+          <mat-select class="form-select" formControlName="disabled">
+            <mat-option [value]="false">Active</mat-option>
+            <mat-option [value]="true">Inactive</mat-option>
+         </mat-select>
+      </mat-form-field>
+    </div> 
+
+    <div class="field" fxLayout="column">
+      <label>Country / region</label>
+      <mat-form-field appearance="outline">
+          <mat-select class="form-select" formControlName="country">
+            <mat-option *ngFor="let country of countries" [value]="country.name">{{ country.name }}</mat-option>
+          </mat-select>
+          <mat-error *ngIf="hasError('country')">{{ countryError }}</mat-error>
+      </mat-form-field>
+    </div> 
+  </div>
+
+  <!-- TODO Show XML file as a code editor -->
+  <div class="form-controls" fxLayout="row" >
+      <div class="field" fxLayout="column" fxFill>
+        <label>XML file</label>
+        <mat-error *ngIf="hasError('xmlFile')">{{ xmlError }}</mat-error>
+        <textarea spellcheck="false" formControlName="xmlFile"></textarea>
+      </div> 
+    </div>
+ </form>
+
+</div>
+
+<div mat-dialog-actions fxLayoutAlign="flex-end center">
+  <button mat-button mat-dialog-close>Close</button>
+  <button *ngIf="!data.id" (click)="createNewPolicy()" mat-raised-button [disabled]="policyForm.invalid" color="primary">Create</button>
+  <button *ngIf="data.id" (click)="updatePolicy()" mat-raised-button [disabled]="policyForm.invalid" color="primary">Update</button>
+</div>

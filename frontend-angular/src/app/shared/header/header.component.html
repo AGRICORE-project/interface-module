@@ -1,0 +1,35 @@
+<div class="app-header">
+    <div fxLayout="row wrap" fxLayoutAlign="space-between center" class="header-container">
+        <div fxFlex="15" class="navigation-controls">
+            <mat-icon (click)="goBack()" aria-hidden="false" aria-label="navigation before" fontIcon="navigate_before"></mat-icon>
+            <mat-icon (click)="goForward()" aria-hidden="navigation after" aria-label="maximize icon" fontIcon="navigate_next"></mat-icon>
+        </div>
+        <div  fxLayoutAlign="center center" fxLayoutGap="15" class="profile-container">
+            <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="25" class="profile">
+                <!-- <div class="profile-pic">
+                    <img src="./assets/img/profile_default.webp" width="42" heiight="42" alt="profile pic" />
+                </div> -->
+                <div class="profile-details" fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="15">
+                    <mat-icon class="user-icon" aria-hidden="false" aria-label="user" fontIcon="person"></mat-icon>
+                    <div class="user-info text-center">
+                        <span>{{ currentUser?.fullName | titlecase }}</span><br />
+                        <span><small>{{ currentUser?.email | lowercase }}</small></span>
+                    </div>
+                    <button (click)="openEditProfileDialog()" mat-button mat-raised-button class="edit-profile-btn">
+                        <mat-icon class="edit-icon" aria-hidden="false" aria-label="edit" fontIcon="edit"></mat-icon>
+                    </button>
+                </div>
+            </div>
+            <!-- <div class="notifications">
+                <mat-icon aria-hidden="false" aria-label="notifications bell" fontIcon="notifications"></mat-icon>
+            </div> -->
+            <button (click)="logout()" mat-raised-button>Log out</button>
+            <div class="connections"><app-check-connections></app-check-connections></div>
+        </div>
+        <div fxFlex="15" fxLayoutGap="10" fxLayout="row nowrap" fxLayoutAlign="flex-end center" class="window-controls">
+            <mat-icon (click)="minimizeApp()" aria-hidden="false" aria-label="minimize icon" fontIcon="remove"></mat-icon>
+            <mat-icon (click)="maximizeApp()" aria-hidden="false" aria-label="maximize icon" fontIcon="web_asset"></mat-icon>
+            <mat-icon (click)="closeApp()" aria-hidden="false" aria-label="close icon" fontIcon="close"></mat-icon>
+        </div>
+    </div>
+</div>

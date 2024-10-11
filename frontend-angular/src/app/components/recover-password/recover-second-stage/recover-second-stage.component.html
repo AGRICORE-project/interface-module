@@ -1,0 +1,21 @@
+<p class="mb20 color-black">We have sent a token to your email, if you cannot find it, please check your spam folder.</p>
+
+<mat-card *ngIf="response" class="mb20" [class]="response.class">
+    <mat-card-content>
+        {{ response.message }}
+    </mat-card-content>
+</mat-card>
+
+<form novalidate autocomplete="off" [formGroup]="formSecondStage" fxLayout="column" fxLayoutAlign="center center" >
+
+    <div fxFill class="form-controls">
+        <mat-form-field appearance="outline" class="mb10">
+            <mat-label>Token</mat-label>
+            <input matInput formControlName="token" placeholder="a48d8531-f00d-4f05-a229-718b927c74ab" required>
+            <mat-icon matSuffix aria-hidden="false" aria-label="token" fontIcon="key"></mat-icon>
+            <mat-error *ngIf="hasError('token')">{{ tokenError }}</mat-error>
+        </mat-form-field>
+    </div>
+
+    <button (click)="submitForm()" type="button" fxFill mat-raised-button color="primary" [disabled]="formSecondStage.invalid" class="mb20 p10">Validate token</button>
+</form>

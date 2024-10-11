@@ -1,0 +1,127 @@
+<h2>User management</h2>
+
+<p class="mb30">Manage the users of the application and activate new registered users, only admin users can access this page.</p>
+
+<mat-card class="mb20">
+  <mat-card-title class="mb20">New registered users</mat-card-title>
+  <mat-card-content>
+    <span fxLayoutAlign="center center" class="mb20">
+      <mat-spinner *ngIf="!loaded" diameter="25"></mat-spinner>
+    </span>
+
+    <div *ngIf="loaded" class="mat-elevation-z8">
+      <table class="w100" mat-table [dataSource]="userRegisteredTable" matSort>
+        <!-- Email Column -->
+        <ng-container matColumnDef="email">
+          <th mat-header-cell mat-sort-header *matHeaderCellDef>Full name</th>
+          <td mat-cell *matCellDef="let user">{{ user.fullName }}</td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="name">
+          <th mat-header-cell mat-sort-header *matHeaderCellDef>Email</th>
+          <td mat-cell *matCellDef="let user">{{ user.email }}</td>
+        </ng-container>
+
+        <!-- Role Column -->
+        <ng-container matColumnDef="role">
+          <th mat-header-cell mat-sort-header *matHeaderCellDef>Role</th>
+          <td mat-cell *matCellDef="let user">{{ user.roles | Role }}</td>
+        </ng-container>
+
+        <!-- Status Column -->
+        <ng-container matColumnDef="status">
+          <th mat-header-cell *matHeaderCellDef>Verified</th>
+          <td mat-cell *matCellDef="let user">
+            <mat-icon aria-hidden="false" aria-label="edit icon" fontIcon="close"></mat-icon>
+          </td>
+        </ng-container>
+
+        <!-- Options Column -->
+        <ng-container matColumnDef="options">
+          <th mat-header-cell *matHeaderCellDef>Options</th>
+          <td mat-cell *matCellDef="let user" class="new-users" fxLayoutGap="10">
+            <button (click)="verifyUser(user.id)" mat-raised-button color="primary">Verify</button>
+            <button (click)="openDeleteUser(user.email)" mat-raised-button color="warn">Delete</button>
+          </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+
+      <div *ngIf="!userRegisteredTable.data.length" class="no-data">No new registered users</div>
+
+      <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons aria-label="Select page"> </mat-paginator>
+    </div>
+  </mat-card-content>
+</mat-card>
+
+<mat-card>
+  <mat-card-title class="mb20">Active users</mat-card-title>
+  <mat-card-content>
+    <span fxLayoutAlign="center center" class="mb20">
+      <mat-spinner *ngIf="!loaded" diameter="25"></mat-spinner>
+    </span>
+
+    <div *ngIf="loaded" class="mat-elevation-z8">
+      <table class="w100" mat-table [dataSource]="userTable" matSort>
+        <!-- Email Column -->
+        <ng-container matColumnDef="email">
+          <th mat-header-cell mat-sort-header *matHeaderCellDef>Full name</th>
+          <td mat-cell *matCellDef="let user">{{ user.fullName }}</td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="name">
+          <th mat-header-cell mat-sort-header *matHeaderCellDef>Email</th>
+          <td mat-cell *matCellDef="let user">{{ user.email }}</td>
+        </ng-container>
+
+        <!-- Role Column -->
+        <ng-container matColumnDef="role">
+          <th mat-header-cell mat-sort-header *matHeaderCellDef>Role</th>
+          <td mat-cell *matCellDef="let user">{{ user.roles | Role }}</td>
+        </ng-container>
+
+        <!-- Status Column -->
+        <ng-container matColumnDef="status">
+          <th mat-header-cell *matHeaderCellDef>Verified</th>
+          <td mat-cell *matCellDef="let user">
+            <mat-icon aria-hidden="false" aria-label="edit icon" fontIcon="done"></mat-icon>
+          </td>
+        </ng-container>
+
+        <!-- Options Column -->
+        <ng-container matColumnDef="options">
+          <th mat-header-cell *matHeaderCellDef>Options</th>
+          <td mat-cell *matCellDef="let user" class="controls active-users">
+            <mat-icon (click)="openEditUser(user.email)" aria-hidden="false" aria-label="edit icon" fontIcon="edit"></mat-icon>
+            <mat-icon (click)="openDeleteUser(user.email)" aria-hidden="false" aria-label="delete icon" fontIcon="delete"></mat-icon>
+          </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+
+      <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons aria-label="Select page"> </mat-paginator>
+    </div>
+  </mat-card-content>
+</mat-card>
+
+<ng-template #deleteUser>
+  <div class="dialog">
+    <h3 mat-dialog-title fxLayoutAlign="flex-start center" fxLayoutGap="10">
+      <span>Delete user</span>
+      <mat-icon class="material-symbols-outlined">account_circle</mat-icon>
+    </h3>
+
+    <div mat-dialog-contet>
+      <p>¿Are you sure you want to delete the selected user?</p>
+    </div>
+
+    <div mat-dialog-actions fxLayoutAlign="flex-end flex-end">
+      <button mat-button (click)="deleteUserChoice(false)">Close</button>
+      <button mat-raised-button (click)="deleteUserChoice(true)" color="warn">Delete</button>
+    </div>
+  </div>
+</ng-template>

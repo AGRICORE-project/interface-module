@@ -1,0 +1,30 @@
+<h2>My simulations</h2>
+
+<div class="simulations-top mb20">
+  <p>
+    View the status of simulations that have been launched and are running, but also a list of simulations that have been completed. You can also load
+    files extracted from the simulation setup module and launch them as a new simulation process.
+  </p>
+</div>
+
+<mat-card class="mb20">
+  <mat-card-title class="mb20"> Simulations in progress </mat-card-title>
+
+  <mat-card-content>
+    <div class="mat-elevation-z8">
+      <app-simulations-table [dataSource]="progressTable()" [isLoading]="isLoading" />
+      <mat-paginator #progressPaginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons> </mat-paginator>
+    </div>
+  </mat-card-content>
+</mat-card>
+
+<mat-card class="mb20">
+  <mat-card-title class="mb20"> Finished simulations </mat-card-title>
+
+  <mat-card-content>
+    <div class="mat-elevation-z8">
+      <app-simulations-table [dataSource]="finishedTable()" [isLoading]="isLoading" [canExport]="true" />
+      <mat-paginator #finishedPaginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons> </mat-paginator>
+    </div>
+  </mat-card-content>
+</mat-card>

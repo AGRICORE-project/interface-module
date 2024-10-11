@@ -1,0 +1,81 @@
+<h3>Simulation configuration</h3>
+
+<mat-card class="mb20">
+  <form [formGroup]="configurationInheritedForm">
+    <div class="configuration-wrapper mb10" fxLayoutAlign="space-evenly " fxLayout="row wrap">
+      <div class="column" fxLayout="column">
+        <div class="group-field" fxLayout="column" fxLayoutGap="5">
+          <small>Population year</small>
+          <mat-form-field appearance="outline" class="readonly">
+            <mat-label>Chosen population</mat-label>
+            <input matInput required readonly [value]="yearValue" />
+          </mat-form-field>
+        </div>
+
+        <div class="group-field" fxLayout="column" fxLayoutGap="5">
+          <small>Simulation horizon</small>
+          <mat-form-field appearance="outline">
+            <mat-label>Horizon</mat-label>
+            <input matInput type="number" formControlName="simulationHorizon" required placeholder="4" />
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="column" fxLayout="column">
+        <div class="group-field" fxLayout="column" fxLayoutGap="5">
+          <small>Long-term model repository branch</small>
+          <mat-form-field appearance="outline">
+            <mat-label>Select a repository</mat-label>
+
+            <mat-select formControlName="longTermBranch" required>
+              @for (branch of longTermBranches; track longTermBranches) {
+              <mat-option [value]="branch.name">{{ branch.name }}</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div class="group-field" fxLayout="column" fxLayoutGap="5">
+          <small>Short-term model repository branch</small>
+          <mat-form-field appearance="outline">
+            <mat-label>Select a repository</mat-label>
+
+            <mat-select formControlName="shortTermBranch" required>
+              @for (branch of shortTermBranches; track shortTermBranches) {
+              <mat-option [value]="branch.name">{{ branch.name }}</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+    <div class="advanced-configuration-wrapper mb10" fxLayoutAlign="center">
+      <mat-accordion>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title> Advanced simulation configuration </mat-panel-title>
+          </mat-expansion-panel-header>
+          <div class="advanced-form p20" fxLayoutAlign="space-evenly">
+            <div>
+              <mat-form-field appearance="outline" class="queuesuffix">
+                <mat-label>Queue suffix</mat-label>
+                <input matInput type="text" formControlName="queueSuffix" />
+              </mat-form-field>
+            </div>
+            <div>
+              <mat-checkbox color="primary" formControlName="ignoreLP" (change)="onIgnoreLpChange($event)">Disable Long
+                Period</mat-checkbox>
+            </div>
+            <div>
+              <mat-checkbox color="primary" formControlName="ignoreLMM" [disabled]="isDisabled()">Disable Land
+                Market</mat-checkbox>
+            </div>
+            <div>
+              <mat-checkbox color="primary" formControlName="compress">Compress</mat-checkbox>
+            </div>
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+  </form>
+</mat-card>

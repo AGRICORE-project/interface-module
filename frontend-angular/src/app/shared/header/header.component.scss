@@ -1,0 +1,52 @@
+
+.header-container {
+    min-height: 7vh;
+    background-color: #0F6796;
+    padding: 10px 0px;
+    -webkit-app-region: drag;
+}
+
+.search-bar, .connections {
+    -webkit-app-region: no-drag !important;
+}
+.connections {
+    margin-top: 5px;
+    cursor: pointer;
+}
+
+.navigation-controls mat-icon, .window-controls mat-icon {
+    color: white;
+    font-size: 26px;
+    padding: 5px;
+    cursor: pointer;
+    -webkit-app-region: no-drag !important;
+    z-index: 10;
+}
+
+button {
+    -webkit-app-region: no-drag !important;
+    z-index: 5;
+    cursor: pointer;
+}
+.window-controls {
+    margin-right: 10px;
+}
+.user-info {
+    padding: 0px 5px;
+}
+.user-icon {
+    color: white;
+    font-size: 28px;
+}
+.edit-profile-btn { 
+    color: white !important;
+    background-color: #00A6FF !important;
+}
+
+.edit-profile-btn > mat-icon{ 
+    margin: 0 !important;
+}
+
+// .profile-pic img {
+//     border-radius: 50%;
+// }

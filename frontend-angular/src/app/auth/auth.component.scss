@@ -1,0 +1,7 @@
+.container {
+    padding: 50px 30px;
+}
+:host ::ng-deep mat-form-field {
+    width: 100% !important;
+    color: black;
+}

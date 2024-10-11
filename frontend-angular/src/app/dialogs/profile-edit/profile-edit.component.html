@@ -1,0 +1,63 @@
+<h3 mat-dialog-title fxLayoutAlign="flex-start center" fxLayoutGap="10">
+    <span>Edit profile</span>
+    <mat-icon class="material-symbols-outlined">account_circle</mat-icon>
+</h3>
+
+<mat-card *ngIf="response" class="mb20" [class]="response.class">
+  <mat-card-content>
+      {{ response.message }}
+  </mat-card-content>
+</mat-card>
+
+<div mat-dialog-content>
+
+    <form [formGroup]="userForm">
+
+        <div class="form-controls" fxLayout="row" fxLayoutGap="20">
+            <div class="field" fxLayout="column">
+              <label>Full Name</label>
+              <mat-form-field appearance="outline">
+                <input matInput formControlName="fullName" required>
+                <mat-error *ngIf="hasError('fullName')">{{ fullNameError }}</mat-error>
+              </mat-form-field>
+            </div>
+
+            <div class="field" fxLayout="column">
+                <label>Email</label>
+                <mat-form-field appearance="outline">
+                  <input matInput formControlName="email" required>
+                  <mat-error *ngIf="hasError('email')">{{ emailError }}</mat-error>
+                </mat-form-field>
+              </div>
+          </div>
+        
+          <div class="form-controls" fxLayout="row" fxLayoutGap="20">
+            <div class="field" fxLayout="column">
+                <label>Country</label>
+                <mat-form-field appearance="outline">
+                        <mat-select class="form-select" formControlName="country">
+                            <mat-option *ngFor="let country of countries" [value]="country.name"> {{country.name}} </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="hasError('country')">{{ countryError }}</mat-error>
+                </mat-form-field>
+              </div>
+            <div class="field" fxLayout="column">
+                <label>Institution / Company</label>
+                <mat-form-field appearance="outline">
+                  <input matInput formControlName="institution" required>
+                  <mat-error *ngIf="hasError('institution')">{{ institutionError }}</mat-error>
+                </mat-form-field>
+              </div>
+          </div>
+
+    </form>
+
+</div>
+
+<div mat-dialog-actions fxLayoutAlign="flex-end center">
+    <button mat-button mat-dialog-close>Close</button>
+    <button (click)="updateCurrentUser()" mat-raised-button color="primary" fxFlex="1" fxLayoutAlign="center" class="p10" [disabled]="userForm.invalid">
+        <mat-spinner *ngIf="loading" diameter="25"></mat-spinner>
+        <span *ngIf="!loading">Update</span>
+    </button>
+  </div>

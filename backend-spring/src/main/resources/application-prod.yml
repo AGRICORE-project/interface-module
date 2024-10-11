@@ -1,0 +1,46 @@
+cookie:
+  domain: localhost
+  expirationTimeInSeconds: 10800
+  name: # TO_MODIFY: Add cookie name 
+  secure: false
+jwt:
+  expirationMinutes: 60
+  id: # TO_MODIFY: Add JWT ID 
+  secret: # TO_MODIFY: Add JWT secret 
+ldap:
+  name: Default LDAP service
+  partition: agricore
+  partitionSuffix: dc=agricore,dc=eu
+  password: # TO_MODIFY: Add LDAP password 
+  port: 389
+  principal: cn=admin,dc=agricore,dc=eu
+  url: ldap://localhost:389
+server:
+  error:
+    include-stacktrace: never
+ardit:
+  domain: localhost
+  port: 4200
+  mail-token: # TO_MODIFY: Add mail token 
+  mail-name: # TO_MODIFY: Add mail name 
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:10001/ardit_interface
+    username: # TO_MODIFY: Add database username 
+    password: # TO_MODIFY: Add database password 
+  jpa:
+    show-sql: false
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate.ddl-auto: update #Only for dev or testing, delete on production environments
+  profiles:
+    active: '@activatedProperties@'
+  liquibase:
+    enabled: true
+hive:
+  uri: jdbc:hive2://18.158.100.170:10000
+  driver-class-name: org.apache.hive.jdbc.HiveDriver
+  username: # TO_MODIFY: Add Hive username 
+  password: # TO_MODIFY: Add Hive password 
+
+      

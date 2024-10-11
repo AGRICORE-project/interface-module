@@ -1,0 +1,69 @@
+<div class="container">
+
+    <h2 class="text-center mb30">Sign up</h2>
+
+    <mat-card *ngIf="response" class="mb20" [class]="response.class">
+        <mat-card-content>
+            {{ response.message }}
+        </mat-card-content>
+    </mat-card>
+
+    <form [formGroup]="registerForm" fxLayout="column" fxLayoutAlign="center center">
+
+        <div fxFill class="form-controls">
+            <mat-form-field appearance="outline">
+                <mat-label>Full name</mat-label>
+                <input matInput formControlName="fullName" placeholder="John Doe" required>
+                <mat-error *ngIf="hasError('fullName')">{{ fullNameError }}</mat-error>
+            </mat-form-field>
+        </div>
+
+        <div fxFill class="form-controls">
+            <mat-form-field appearance="outline">
+                <mat-label>Email</mat-label>
+                <input matInput formControlName="email" placeholder="agricore@example.com" required>
+                <mat-error *ngIf="hasError('email')">{{ emailError }}</mat-error> 
+            </mat-form-field>
+        </div>
+
+        <div fxFill class="form-controls">
+            <mat-form-field appearance="outline">
+                <mat-label>Password</mat-label>
+                <input type="password" matInput formControlName="password">
+                <mat-error *ngIf="hasError('password')">{{ passwordError }}</mat-error>
+            </mat-form-field>
+        </div>
+
+        <div fxFill class="form-controls">
+            <mat-form-field appearance="outline">
+                <mat-label>Confirm password</mat-label>
+                <input type="password" matInput formControlName="password2">
+                <mat-error *ngIf="hasError('password2')">{{ confirmPassError }}</mat-error>
+            </mat-form-field>
+        </div>
+
+        <div fxFill class="form-controls">
+            <mat-form-field appearance="outline">
+                <mat-label>Country</mat-label>
+                    <mat-select class="form-select" formControlName="country">
+                        <mat-option *ngFor="let country of countries" [value]="country.name"> {{country.name}} </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="hasError('country')">{{ countryError }}</mat-error>
+            </mat-form-field>
+        </div>
+
+        <div fxFill class="form-controls">
+            <mat-form-field appearance="outline">
+                <mat-label>Institution / Company</mat-label>
+                <input matInput formControlName="institution" placeholder="University of Parma" required>
+                <mat-error *ngIf="hasError('institution')">{{ institutionError }}</mat-error> 
+            </mat-form-field>
+        </div>
+
+        <button fxFill mat-raised-button (click)="submitRegister()" type="button" color="primary" [disabled]="registerForm.invalid" class="mb20 p10">Sign up</button>
+
+        <mat-divider class="mb20 w100"></mat-divider>
+        
+        <p class="text-center"><a [routerLink]="loginRoute">Already have an account? <b>Sign in!</b></a></p>
+    </form>
+</div>

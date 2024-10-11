@@ -1,0 +1,26 @@
+<mat-card class="mb20">
+  <mat-card-title>
+    <h3>Launch simulation</h3>
+  </mat-card-title>
+
+  <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="30">
+    <h4>SIMULATION SUMMARY</h4>
+    <div class="simulation-summary">
+      <p><strong>Synthetic Population:</strong> {{ simulationSetup.syntheticPopulation?.population?.name }}</p>
+      <p><strong>Long term branch:</strong> {{ simulationSetup.configuration?.longTermBranch }}</p>
+      <p><strong>Short term branch:</strong> {{ simulationSetup.configuration?.shortTermBranch }}</p>
+      <p><strong>Simulation horizon:</strong> {{ simulationSetup.configuration?.simulationHorizon }}</p>
+    </div>
+
+    <button mat-raised-button color="accent" class="mb20" (click)="launchSimulation()" [disabled]="isLaunched || isLoading">
+      @if (!isLoading) {
+        <ng-container>
+          Launch simulation&nbsp;
+          <mat-icon aria-hidden="false" aria-label="download icon" fontIcon="rocket_launch"></mat-icon>
+        </ng-container>
+      } @else {
+        <mat-spinner diameter="25"></mat-spinner>
+      }
+    </button>
+  </div>
+</mat-card>

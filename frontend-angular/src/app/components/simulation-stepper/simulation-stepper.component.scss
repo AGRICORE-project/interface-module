@@ -1,0 +1,35 @@
+.color-warn {
+    color: #d3172e;
+}
+.stepper-controls {
+    button {
+        padding: 20px 40px;
+    }
+}
+::ng-deep .mat-step-header{
+    margin-bottom: 20px;
+}
+::ng-deep .mat-step-header .mat-step-icon-selected {
+    background-color: #0f6796;
+}
+:host ::ng-deep .mat-form-field .mat-form-field-outline {
+    background-color: white;
+}
+:host ::ng-deep .mat-form-field-disabled .mat-form-field-outline {
+    background-color: #e8e8e8;
+}
+.mat-step-header .mat-step-icon-selected, .mat-step-header .mat-step-icon-state-done, .mat-step-header .mat-step-icon-state-edit {
+    background-color: red !important;
+}
+.mat-step-header .mat-step-icon {
+    background-color: rgba(167, 35, 35, 0.54) !important;
+    color: #fff;
+}
+mat-icon.info-icon {
+    font-size: 16px;
+    color: #ffc107
+}
+.reset-button {
+    background-color: lightslategray;
+    color: white;
+}

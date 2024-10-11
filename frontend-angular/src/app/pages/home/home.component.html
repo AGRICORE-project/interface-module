@@ -1,0 +1,27 @@
+<h2 class="mb20">Agricore home</h2>
+
+<p class="mb30">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sed necessitatibus consequatur nihil nemo cupiditate sit beatae! Sit cupiditate, debitis iure eaque molestias corporis, qui inventore nisi atque rerum ullam quidem quae magni quo accusamus nostrum maiores hic repellat adipisci unde placeat! Harum maxime nihil optio consequatur commodi at repellat. Labore!</p>
+
+<app-navigation-card
+    title="Simulation setup"
+    message="This section is used to set up and run simulations in the system using synthetic populations, existing policies or selecting KPIs, among others."
+    [route]="simulationRoute">
+</app-navigation-card>
+    
+<app-navigation-card
+    title="Synthetic population generator"
+    message="This section links to an external tool that allows the creation of complete new synthetic populations, using multiple modules of the AGRICORE project."
+    [route]="simulationRoute">
+</app-navigation-card>
+
+<app-navigation-card
+    title="Simulations"
+    message="In this section the user will be able to visualise all the simulations in exection and access a record of those already completed. From which, he/she will be able to connect to the visualization module to show the results of the simulations in a graphical way."
+    [route]="simulationRoute">
+</app-navigation-card>
+
+<app-navigation-card
+    title="Visualization"
+    message="This section allows to display the results of the simulations using different types of graphs and charts. It also enables the possibility to take modifications to de displayed data using Jupyter."
+    [route]="simulationRoute">
+</app-navigation-card>

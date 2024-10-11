@@ -1,0 +1,67 @@
+<mat-icon *ngIf="connectionsFetched" (click)="openConnectionDialog()" aria-hidden="false" aria-label="connection icon" [fontIcon]="headerIcon" [class]="headerIconClass"></mat-icon>
+<mat-spinner *ngIf="!connectionsFetched" diameter="25"></mat-spinner>
+
+<ng-template #connectionDialog>
+  <div class="dialog">
+    <h3 mat-dialog-title>Connection list</h3> 
+    
+    <div mat-dialog-content>
+
+      <div class="mat-elevation-z2 p20">
+        <mat-card *ngIf="response" class="mb20" [class]="response.class">
+          <mat-card-content>
+              {{ response.message }}
+          </mat-card-content>
+        </mat-card>
+        <form [formGroup]="ipForm" (ngSubmit)="handleIpSubmit()" fxLayoutAlign="center flex-start" fxLayoutGap="20" class="form-controls">
+          <mat-form-field appearance="outline">
+            <mat-label>ABM URL</mat-label>
+            <input matInput formControlName="abmIp" placeholder="Set a domain or IP">
+            <mat-hint fxLayoutAlign="flex-start center"><mat-icon fontIcon="info"></mat-icon> <span>Leave it blank for default value</span></mat-hint>
+          </mat-form-field>
+          <button mat-raised-button color="primary" class="p10" fxLayoutAlign="center center" [disabled]="ipForm.invalid" >
+            <span *ngIf="!loading">SET</span>
+            <mat-spinner *ngIf="loading" diameter="25"></mat-spinner> 
+          </button>
+        </form>
+        <mat-error *ngIf="hasError('abmIp')" class="text-center">{{ getIpError }}</mat-error>
+      </div>
+      
+      <div class="mb20"></div>
+
+      <div class="connection">
+        <div *ngIf="!connectionsList.interfaceApi.errorMessage" class="success" fxLayoutAlign="flex-start center">
+          <mat-icon *ngIf="!connectionsList.interfaceApi.errorMessage" [class]="connectionsList.interfaceApi.class" aria-hidden="false" aria-label="check icon" fontIcon="check"></mat-icon>
+          <span><b>{{ connectionsList.interfaceApi.message }}</b></span>
+        </div>
+        
+        <div *ngIf="connectionsList.interfaceApi.errorMessage" class="error">
+          <div fxLayoutAlign="flex-start center">
+            <mat-icon class="error-tooltip" aria-hidden="false" aria-label="more info icon" fontIcon="error" [matTooltip]="connectionsList.interfaceApi.errorMessage"></mat-icon>
+            <span><b>{{ connectionsList.interfaceApi.message }}</b></span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="connection">
+        <div *ngIf="!connectionsList.abmApi.errorMessage" class="success" fxLayoutAlign="flex-start center">
+          <mat-icon *ngIf="!connectionsList.abmApi.errorMessage" [class]="connectionsList.abmApi.class" aria-hidden="false" aria-label="check icon" fontIcon="check"></mat-icon>
+          <span><b>{{ connectionsList.abmApi.message }}</b></span>
+        </div>
+        
+        <div *ngIf="connectionsList.abmApi.errorMessage" class="error">
+          <div fxLayoutAlign="flex-start center">
+            <mat-icon class="error-tooltip" aria-hidden="false" aria-label="more info icon" fontIcon="error" [matTooltip]="connectionsList.abmApi.errorMessage"></mat-icon>
+            <span><b>{{ connectionsList.abmApi.message }}</b></span>
+          </div>
+        </div>
+      </div>
+
+      <small>This screen is refreshed every {{ timerValue | date:'ss' }} seconds.</small>
+    </div>
+    
+    <div mat-dialog-actions fxLayoutAlign="flex-end flex-end">
+      <button mat-button mat-dialog-close>Close</button>
+    </div>
+  </div>
+</ng-template>

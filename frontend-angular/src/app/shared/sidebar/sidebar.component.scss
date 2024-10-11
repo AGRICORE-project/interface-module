@@ -1,0 +1,86 @@
+
+mat-sidenav {
+    background-color: #00A6FF;
+    padding: 0px 15px;
+
+}
+/* MAIN CONTENT */
+mat-sidenav-content  {
+    min-height: 93vh;
+
+    .container {
+        padding: 30px 40px;
+        font-size: 18px;
+        line-height: 1.6em;
+    }
+    
+}
+/* */
+mat-icon {
+    margin: 0 5px;
+}
+mat-divider{
+    height: 1px;
+    color: white;
+    width: 200px;
+    background-color: white;
+}
+hr {
+    border: none;
+    height: 5px;
+    background-color: white; /* Modern Browsers */
+}
+// .collapse-controls {
+//     position: absolute;
+//     bottom: 0;
+// }
+.logo {
+    padding: 0px 20px;
+
+    .alt-logo{
+       font-size: 22px;
+    }
+}
+.nav-item {
+    padding: 10px 15px;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.active {
+    border-left: 3px solid white;
+    background-color: #014f79;
+}
+
+.breadcrumbs {
+    padding: 20px 20px 0 20px;
+}
+// * EXPANSION PANEL *//
+.mat-expansion-panel {
+    box-shadow: none !important;
+    background: transparent !important;
+
+    .mat-expansion-panel-header {
+        padding: 0 15px !important;
+
+        .mat-expansion-panel-header-title {
+            color: white !important;
+            font-size: 18px;
+        }
+    }
+}
+.sub-active {
+    border-left: 3px solid white;
+    background-color: #014f79;
+}
+.mat-expansion-panel:not(.mat-expanded):not([aria-disabled=true]) .mat-expansion-panel-header:hover {
+    background: transparent !important;
+}
+:host ::ng-deep .mat-expansion-panel-body {
+    padding: 0 15px !important;
+    color: white;
+}
+:host .mat-expansion-indicator::after{
+    color: white;
+}
+// ** *** ** //

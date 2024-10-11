@@ -1,0 +1,32 @@
+.auth-header {
+    padding: 10px 0px 30px;
+    background-color: #0F6796;
+    -webkit-app-region: drag;
+}
+
+.window-controls {
+    -webkit-app-region: no-drag !important;
+    position: absolute;
+    padding: 10px;
+    top: 0;
+    right: 0;
+    z-index: 10;
+}
+
+mat-icon {
+    color: white;
+    font-size: 26px;
+    padding: 5px;
+    cursor: pointer;
+}
+
+mat-icon:hover {
+   opacity: 0.5;
+}
+
+h2 {
+    color: white;
+    font-weight: normal;
+    letter-spacing: 0.15rem;
+    margin: 0;
+}

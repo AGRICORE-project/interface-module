@@ -1,0 +1,58 @@
+<h3 mat-dialog-title>Add coupled policy</h3>
+
+<div mat-dialog-content style="padding-top:1rem !important">
+  <form [formGroup]="policyForm" (ngSubmit)="handleSubmit()" class="form-controls" fxLayout="column">
+
+    <mat-form-field appearance="outline">
+      <mat-label>Policy identifier</mat-label>
+      <input matInput type="number" formControlName="policyIdentifier" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Policy Description</mat-label>
+      <textarea matInput formControlName="policyDescription"></textarea>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Model Label</mat-label>
+      <mat-select class="form-select" formControlName="modelLabel">
+        <mat-option [value]="''"> None</mat-option>
+        <mat-option [value]="'Greening'"> Greening</mat-option>
+        <mat-option [value]="'Basic'"> Basic</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+
+    <div fxLayoutAlign="space-between center">
+      <mat-label>Economic compensation</mat-label>
+      <button mat-icon-button type="button" (click)="addEconomicCompensation()">
+        <mat-icon>add</mat-icon>
+      </button>
+    </div>
+    <div style="border:1px solid black;width:100%;min-height:20px;" class="mb20">
+      <div *ngFor="let product of coupledCompensations.controls; let i = index">
+        <p style="padding-left:10px">{{ product.get('productGroup').value }} :
+          {{product.get('economicCompensation').value}}</p>
+      </div>
+    </div>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Start Year</mat-label>
+      <input matInput type="number" formControlName="startYearNumber" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>End Year</mat-label>
+      <input matInput type="number" formControlName="endYearNumber" />
+    </mat-form-field>
+
+    <div mat-dialog-actions
+      style="margin-left: 0 !important; padding-left:0 !important; margin-right: 0 !important; padding-right:0 !important"
+      fxLayoutAlign="space-between flex-end" fxLayoutGap="10">
+      <button mat-raised-button mat-dialog-close>Cancel</button>
+      <button mat-raised-button type="submit" color="primary">Add</button>
+    </div>
+
+  </form>
+
+</div>

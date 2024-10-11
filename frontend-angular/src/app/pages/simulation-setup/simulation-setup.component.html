@@ -1,0 +1,24 @@
+<h2 class="mb20">Simulation setup</h2>
+
+<p class="mb20">
+  In order to launch a simulation process it is necessary to complete all the following sections. The process and all the data related to it can be
+  downloaded in a setup file at any time, allowing to retrieve the work later, if the file is loaded again.
+</p>
+
+<!-- <div class="simulate-loads" fxFlex="40" fxLayoutAlign="center center" fxLayoutGap="20">
+    <button mat-raised-button (click)="fileUpload.click()">
+      <input #fileUpload type="file" hidden (change)="loadSetupFile($event)" />
+      <mat-icon aria-hidden="false" aria-label="load icon" fontIcon="file_upload"></mat-icon>
+      Load a setup file
+    </button>
+
+    <button mat-raised-button color="primary" (click)="downloadSetup()" download="test.json">
+      <mat-icon aria-hidden="false" aria-label="download icon" fontIcon="file_download"></mat-icon>
+      Download the setup file
+    </button>
+  </div>
+</div> -->
+
+<div class="simulation">
+  <app-simulation-stepper></app-simulation-stepper>
+</div>

@@ -1,0 +1,61 @@
+version: '3'
+services:
+
+    backend:
+        container_name: agricore-interface-backend
+        build:
+            context: ./backend-spring
+            dockerfile: Dockerfile
+        restart: always
+        volumes:
+            - ./backend-spring:/app
+            - ~/.m2:/root/.m2
+        ports:
+            - "8089:8080"
+        depends_on:
+            - ldap
+            - postgres
+        environment:
+            - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/ardit_interface
+            - LDAP_URL=ldap://ldap:389
+
+    ldap:
+        image: osixia/openldap:1.4.0
+        container_name: ldap_interface_module
+        ports:
+            - "389:389"
+            - "636:636"
+        volumes:
+            - ./ldap-service/volume/database:/var/lib/ldap
+            - ./ldap-service/volume/config:/etc/ldap/slapd.d
+            - ./ldap-service/dev.ldif:/container/service/slapd/assets/config/bootstrap/ldif/dev.ldif
+        environment:
+            - LDAP_DOMAIN=agricore.eu
+            - LDAP_ADMIN_PASSWORD=admin
+        command: --copy-service --loglevel debug
+
+    phpldapadmin:
+        image: osixia/phpldapadmin:latest
+        container_name: phpldapadmin_interface_module
+        environment:
+            - PHPLDAPADMIN_LDAP_HOSTS=ldap
+            - PHPLDAPADMIN_HTTPS=false
+        ports:
+            - "8081:80"
+        depends_on:
+            - ldap
+    postgres:
+        image: postgres
+        container_name: postgres_interface_module
+        volumes:
+            - ardit_interface_postgres_data:/var/lib/postgresql/data
+        ports:
+            - "10001:5432"
+        environment:
+            - POSTGRES_USER=admin
+            - POSTGRES_PASSWORD=admin
+            - POSTGRES_DB=ardit_interface
+
+volumes:
+    ardit_interface_postgres_data:
+        driver: local

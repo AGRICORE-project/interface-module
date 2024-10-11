@@ -1,0 +1,124 @@
+<div class="form">
+  <div class="policy-header" fxLayoutAlign="space-between center">
+    <div class="header-container">
+      <h3>Policy selection</h3>
+      <p>In order to launch a simulation process it is necessary to complete all the following sections.</p>
+    </div>
+
+  </div>
+
+  <div class="personal-policies mb20" fxFill>
+    <mat-card>
+      <mat-card-title class="mb20">Population Policies</mat-card-title>
+      <mat-card-content>
+        <span *ngIf="!populationPolicies"><mat-spinner></mat-spinner></span>
+
+        <div *ngIf="populationPolicies" class="mat-elevation-z8">
+          <table class="w100" mat-table [dataSource]="populationPoliciesTable" matSort #populationSort="matSort">
+
+            <ng-container matColumnDef="policyIdentifier">
+              <th mat-header-cell mat-sort-header *matHeaderCellDef>Policy Identifier</th>
+              <td mat-cell *matCellDef="let policy">{{ policy.policyIdentifier }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="policyDescription">
+              <th mat-header-cell mat-sort-header *matHeaderCellDef>Policy Description</th>
+              <td mat-cell *matCellDef="let policy">{{ policy.policyDescription }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="modelLabel">
+              <th mat-header-cell mat-sort-header *matHeaderCellDef>Model Label</th>
+              <td mat-cell *matCellDef="let policy">{{ policy.modelLabel }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="economicCompensationRepresentation">
+              <th mat-header-cell mat-sort-header *matHeaderCellDef>Economic Compensation</th>
+              <td mat-cell *matCellDef="let policy">{{ policy.economicCompensationRepresentation }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="startYearNumber">
+              <th mat-header-cell mat-sort-header *matHeaderCellDef>Start</th>
+              <td mat-cell *matCellDef="let policy">{{ policy.startYearNumber }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="endYearNumber">
+              <th mat-header-cell mat-sort-header *matHeaderCellDef>End</th>
+              <td mat-cell *matCellDef="let policy">{{ policy.endYearNumber }}</td>
+            </ng-container>
+
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+          </table>
+
+          <mat-paginator #populationPaginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons
+            aria-label="Select page"> </mat-paginator>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <div fxLayoutAlign="space-between center" class="mb20">
+    <div fxLayoutGap="10">
+      <button mat-raised-button color="primary" (click)="exportAdditionalPolicies()">Export</button>
+      <button mat-raised-button color="primary" (click)="triggerFileInputClick()">Import</button>
+      <input type="file" #fileInput (change)="onFileSelected($event)" style="display: none;" accept=".json" />
+
+    </div>
+
+    <div fxLayoutGap="10">
+      <button mat-raised-button color="primary" (click)="openCoupledPolicyForm()">Add coupled policy</button>
+      <button mat-raised-button color="primary" (click)="openDecoupledPolicyForm()">Add decoupled policy</button>
+    </div>
+  </div>
+  <div class="personal-policies mb20" fxFill>
+    <mat-card>
+      <mat-card-title class="mb20">Additional Policies</mat-card-title>
+      <mat-card-content>
+
+        <div *ngIf="additionalPoliciesTable" class="mat-elevation-z8">
+          <table class="w100" mat-table [dataSource]="additionalPoliciesTable" matSort #additionalSort="matSort">
+
+            <ng-container matColumnDef="policyIdentifier">
+              <th mat-header-cell mat-sort-header *matHeaderCellDef>Policy Identifier</th>
+              <td mat-cell *matCellDef="let policy">{{ policy.policyIdentifier }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="policyDescription">
+              <th mat-header-cell mat-sort-header *matHeaderCellDef>Policy Description</th>
+              <td mat-cell *matCellDef="let policy">{{ policy.policyDescription }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="modelLabel">
+              <th mat-header-cell mat-sort-header *matHeaderCellDef>Model Label</th>
+              <td mat-cell *matCellDef="let policy">{{ policy.modelLabel }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="economicCompensationRepresentation">
+              <th mat-header-cell mat-sort-header *matHeaderCellDef>Economic Compensation</th>
+              <td mat-cell *matCellDef="let policy">{{ policy.economicCompensationRepresentation }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="startYearNumber">
+              <th mat-header-cell mat-sort-header *matHeaderCellDef>Start</th>
+              <td mat-cell *matCellDef="let policy">{{ policy.startYearNumber }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="endYearNumber">
+              <th mat-header-cell mat-sort-header *matHeaderCellDef>End</th>
+              <td mat-cell *matCellDef="let policy">{{ policy.endYearNumber }}</td>
+            </ng-container>
+
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+          </table>
+
+          <mat-paginator #additionalPaginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons
+            aria-label="Select page"> </mat-paginator>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+</div>

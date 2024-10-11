@@ -1,0 +1,118 @@
+<mat-sidenav-container>
+  <mat-sidenav class="color-white" opened mode="side">
+    <div class="logo text-center">
+      <img src="./assets/img/logo-alt.png" width="120" alt="AGRICORE LOGO" />
+      <p class="alt-logo text-center mb20">AGRICORE</p>
+      <hr class="mb20" />
+    </div>
+    <nav fxLayout="column" fxLayoutGap="15">
+      <div class="nav-item" [routerLink]="homeRoute" fxLayout="row" fxLayoutAlign="flex-start center" routerLinkActive="active">
+        <mat-icon aria-hidden="false" aria-label="home icon" fontIcon="home"></mat-icon>
+        <span>Main page</span>
+      </div>
+      <div class="nav-item" [routerLink]="setupRoute" fxLayout="row" fxLayoutAlign="flex-start center" routerLinkActive="active">
+        <mat-icon aria-hidden="false" aria-label="home icon" fontIcon="settings"></mat-icon>
+        <span>Simulation setup</span>
+      </div>
+      <!-- <div class="nav-item" fxLayoutAlign="flex-start center" routerLinkActive="active">
+        <mat-icon aria-hidden="false" aria-label="home icon" fontIcon="groups"></mat-icon>
+        <span>Synthetic populations</span>
+      </div> -->
+      <div class="nav-item" [routerLink]="visualizationRoute" fxLayoutAlign="flex-start center" routerLinkActive="active">
+        <mat-icon aria-hidden="false" aria-label="home icon" fontIcon="leaderboard"></mat-icon>
+        <span>Visualization</span>
+      </div>
+
+      <div class="nav-item-expands">
+        <mat-accordion>
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <mat-icon aria-hidden="false" aria-label="home icon" fontIcon="gavel"></mat-icon>
+                Catalogues of policies
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <!-- <div class="nav-item" [routerLink]="myPoliciesRoute" fxLayoutAlign="flex-start center" routerLinkActive="sub-active">
+              <mat-icon
+                fxLayoutAlign="center center"
+                style="font-size: 12px"
+                aria-hidden="false"
+                aria-label="select icon"
+                fontIcon="radio_button_unchecked"
+              ></mat-icon>
+              <span>My catalogue of policies</span>
+            </div> -->
+            <div class="nav-item" [routerLink]="generalPoliciesRoute" fxLayoutAlign="flex-start center" routerLinkActive="sub-active">
+              <mat-icon
+                fxLayoutAlign="center center"
+                style="font-size: 12px"
+                aria-hidden="false"
+                aria-label="select icon"
+                fontIcon="radio_button_unchecked"
+              ></mat-icon>
+              <span>General catalogue of policies</span>
+            </div>
+          </mat-expansion-panel>
+        </mat-accordion>
+      </div>
+
+      <div class="nav-item" [routerLink]="simulationsRoute" fxLayoutAlign="flex-start center" routerLinkActive="active">
+        <mat-icon
+          [matBadge]="simulationsBadge"
+          [matBadgeHidden]="hideSimulationBadge"
+          matBadgePosition="before"
+          matBadgeColor="warn"
+          aria-hidden="false"
+          aria-label="simulation icon"
+          fontIcon="query_stats"
+        ></mat-icon>
+        <span>My simulations</span>
+      </div>
+
+      <div
+        *ngIf="currentUser?.roles.includes('ADMIN')"
+        class="nav-item"
+        [routerLink]="usersRoute"
+        fxLayoutAlign="flex-start center"
+        routerLinkActive="active"
+      >
+        <mat-icon
+          [matBadge]="newUsersBadge"
+          [matBadgeHidden]="hideUserBadge"
+          matBadgePosition="before"
+          matBadgeColor="warn"
+          aria-hidden="false"
+          aria-label="person icon"
+          fontIcon="person"
+        ></mat-icon>
+        <span>User management</span>
+      </div>
+
+      <div class="nav-item" fxLayoutAlign="flex-start center" routerLinkActive="active">
+        <mat-icon aria-hidden="false" aria-label="info icon" fontIcon="info"></mat-icon>
+        <span>Help</span>
+      </div>
+
+      <!-- <div class="collapse-controls">
+                <mat-divider></mat-divider>
+                <div class="nav-item" fxLayoutAlign="flex-start center">    
+                    <mat-icon aria-hidden="false" aria-label="home icon" fontIcon="keyboard_double_arrow_left"></mat-icon>
+                    <span>Collapse sidebar</span>     
+                </div>
+            </div> -->
+    </nav>
+  </mat-sidenav>
+  <!-- MAIN CONTENT -->
+  <mat-sidenav-content>
+    <div class="breadcrumbs">
+      <xng-breadcrumb>
+        <ng-container *xngBreadcrumbItem="let breadcrumb">
+          <ng-container>{{ breadcrumb | titlecase }}</ng-container>
+        </ng-container>
+      </xng-breadcrumb>
+    </div>
+    <div class="container">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

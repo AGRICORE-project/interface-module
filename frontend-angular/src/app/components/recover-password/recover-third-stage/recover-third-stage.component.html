@@ -1,0 +1,28 @@
+<p class="mb20 color-black">Token validated, fill the following fields to update your password.</p>
+
+<mat-card *ngIf="response" class="mb20" [class]="response.class">
+    <mat-card-content>
+        {{ response.message }}
+    </mat-card-content>
+</mat-card>
+
+<form novalidate [formGroup]="formThirdStage" fxLayout="column" fxLayoutAlign="center center" >
+
+    <div fxFill class="form-controls">
+        <mat-form-field appearance="outline">
+            <mat-label>Password</mat-label>
+            <input type="password" matInput formControlName="password">
+            <mat-error *ngIf="hasError('password')">{{ passwordError }}</mat-error>
+        </mat-form-field>
+    </div>
+
+    <div fxFill class="form-controls">
+        <mat-form-field appearance="outline">
+            <mat-label>Confirm password</mat-label>
+            <input type="password" matInput formControlName="password2">
+            <mat-error *ngIf="hasError('password2')">{{ confirmPassError }}</mat-error>
+        </mat-form-field>
+    </div>
+
+    <button (click)="submitForm()" type="button" fxFill mat-raised-button color="primary" [disabled]="formThirdStage.invalid" class="mb20 p10">Update password</button>
+</form>
